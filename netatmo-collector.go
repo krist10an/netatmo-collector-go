@@ -8,8 +8,8 @@ import (
 	"time"
 
 	toml "github.com/BurntSushi/toml"
-	netatmo "github.com/exzz/netatmo-api-go"
 	client "github.com/influxdata/influxdb/client/v2"
+	netatmo "github.com/romainbureau/netatmo-api-go"
 )
 
 // Command line flag
