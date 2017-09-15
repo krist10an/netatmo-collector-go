@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -105,6 +106,9 @@ func main() {
 					tags := map[string]string{"station": station.StationName, "module": module.ModuleName}
 
 					ts, data := module.Data()
+					if *fDebug {
+						log.Printf("--- New measurements at: %v\n", time.Unix(int64(ts), 0))
+					}
 					for dataType, value := range data {
 						fields := map[string]interface{}{
 							dataType: value,
@@ -119,7 +123,7 @@ func main() {
 
 						// log read value
 						if *fDebug {
-							fmt.Printf("%s %s %s %s %v\n", station.StationName, module.ModuleName, dataType, value, ts)
+							log.Printf("%s %s %s %v\n", station.StationName, module.ModuleName, dataType, value)
 						}
 					}
 				}
